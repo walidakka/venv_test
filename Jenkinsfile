@@ -18,7 +18,7 @@ node {
   }*/
   // package the lambda function and push to s3
   stage('Package') {
-   sh "pip install -r requirements.txt -t ."
+   sh "pip3 install -r requirements.txt -t ."
    sh "rm -rf tests requirements.txt"
    key = "venv/${determineRepoName()}/${commitID()}.zip"
    sh "zip -r ${commitID()}.zip -r *"

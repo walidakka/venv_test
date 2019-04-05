@@ -19,8 +19,9 @@ node {
   // package the lambda function and push to s3
   stage('Package') {
    sh "pip install -r requirements.txt -t ."
+   sh "rm -rf tests requirements.txt"
    key = "venv/${determineRepoName()}/${commitID()}.zip"
-   sh "zip -r ${commitID()}.zip *.py ./packages"
+   sh "zip -r ${commitID()}.zip -r *"
    sh "aws s3 cp ${commitID()}.zip s3://${packages_bucket}/${key}"
   }
   withEnv(['AWS_DEFAULT_REGION=eu-west-1']) {

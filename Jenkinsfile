@@ -18,8 +18,7 @@ node {
   }*/
   // package the lambda function and push to s3
   stage('Package') {
-   sh "mkdir packages"
-   sh "pip install -r requirements.txt -t ./packages"
+   sh "pip install -r requirements.txt -t ."
    key = "venv/${determineRepoName()}/${commitID()}.zip"
    sh "zip -r ${commitID()}.zip *.py ./packages"
    sh "aws s3 cp ${commitID()}.zip s3://${packages_bucket}/${key}"

@@ -3,7 +3,7 @@ import requests
 import moto
 
 
-def  handler(event,context):
+def handler(event,context):
     return {
     "StatusCode" : 200,
     "Body" : "Test"
